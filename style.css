@@ -1,0 +1,53 @@
+*{
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+body{
+    font-family: sans-serif;
+    height: 100vh;
+    background-image: url("./images/backtech.JPG");
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.head{
+    display: flex;
+    justify-content: space-between;
+} 
+.main{
+    display: flex;
+    background-color: blue;
+    padding: 20px;
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+   
+}
+.logo{
+    width: 70px;
+    border-radius: 100%;
+}
+footer{
+    font-size: xx-small;
+    height: fit-content;
+    color: white;
+    padding: 30px;
+    background: rgb(17, 17, 97);
+    .top{
+        display: flex;
+        font-size: larger;
+        align-items: center;
+        font-weight: 1000;
+        gap: 10px;
+    }
+    .section{
+        display: flex;
+        justify-content: space-between;
+    }
+
+}

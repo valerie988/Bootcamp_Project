@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Signup</title>
+    <link rel="stylesheet" href="../style/login.css">
+    <script src="../Js/login.js" defer></script>
+    <script src="../Js/loginDB.js" defer></script>
+    <script src="../Js/signDB.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <div class="left">
+            <img class="logo" src="../images/logo.JPG" alt="">
+            <p>WELCOME!!!</p>
+            <p>JobWave</p>
+        </div>
+        <div class="form-container log-in-container">
+            <div class="tabs">
+                <a href="#" class="tab log-in-tab active">Log In</a>
+                <a href="#" class="tab sign-up-tab active">Sign up</a>
+            </div>
+            <h1>Log In</h1>
+            <form>
+                <input name="name" type="text" id="username" required placeholder="Username" class="input_text" autocomplete="true"><br>
+                <p class="message"></p>
+                <input name="password" type="password" class="Password" required placeholder="Password" class="input_text"><br>
+                <p class="message"></p>
+                <button>Log In</button><br>
+            </form>
+            <div class="memory">
+                <label>
+                    <input name="subscribe" type="checkbox">
+                    <p>Keep me signed in</p>
+                </label><br>
+                <a href="#">Forgot Password</a>
+            </div>
+           
+            <p>Or sign in with</p>
+            <img src="../images/icon-facebook.svg">
+            <img src="../images/icon-twitter.svg">
+            <img src="../images/icon-pinterest.svg">
+        </div>
+
+        <div class="form-container Sign-up-container hidden">
+            <div class="tabs">
+                <div class="tab log-in-tab active">Log In</div>
+                <div class="tab sign-up-tab active">Sign Up</div>
+            </div>
+            <h1>Sign Up</h1>
+            <form class="signup">
+            <div class="name">
+                <label class="input_top">
+                    <input name="name" type="text" id="F_name" required placeholder="First Name" class="input_text_flex" autocomplete="true">
+                    <p class="message"></p>
+                </label>
+                <label class="input_top">
+                    <input name="name" type="text" id="L_name" required placeholder="Last name" class="input_text_flex" autocomplete="true">
+                    <p class="message"></p>
+                </label>
+            </div>
+            <input name="email" type="email" id="email" required placeholder="Email" class="input_text" autocomplete="true"><br>
+            <p class="message"></p>
+            <input name="Password" type="text" class="Password" required placeholder="Password" class="input_text"><br>
+            <p class="message"></p>
+            <input name="password" type="text" required placeholder="Confirm Password" class="input_text"><br>
+            <p class="message"></p>
+            <button>Sign up</button>
+        </form>
+            <label>
+                <input name="subscribe" type="checkbox">
+                <p>I agree with privacy and policy</p>
+            </label><br>
+           
+        </div>
+    </main>
+</body>
+</html>

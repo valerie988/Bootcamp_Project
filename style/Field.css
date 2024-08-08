@@ -1,0 +1,31 @@
+
+body{
+    height: 100%;
+    background-image: url("../images/backtech.JPG");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+main{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+.img1{
+    width: 50%;
+    border-radius: 10px;
+}
+.img2{
+    width: 50%;
+    border-radius: 10px;
+}
+.img3{
+    width: 30%;
+    border-radius: 10px;
+}
+a{
+    font-weight: bolder;
+    font-size: x-large;
+}

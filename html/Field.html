@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style/Field.css">
+    <link rel="stylesheet" href="../style/glide.core.min.css">
+    <link rel="stylesheet" href="../style/glide.theme.min.css">
+    <script src="../Js/company.js" defer></script>
+
+</head>
+
+<body>
+    <img class="logo" src="../images/logo.JPG">
+    <main>
+        <div class="glide">
+            <div class="glide__track" data-glide-el="track">
+                <ul class="glide__slides">
+                    <li class="glide__slide"><img class="img1" src="../images/eng.JPG">
+                        <button onclick="filterCompany(`Engineering`)">Engineering</button>
+                    </li>
+                    <li class="glide__slide"><img class="img2" src="../images/med.JPG">
+                        <button onclick="filterCompany(`Hospital`)">Medicine</button>
+                    </li>
+                    <li class="glide__slide"><img class="img3" src="../images/Agri.JPG">
+                        <button onclick="filterCompany(`Agriculture-Service`)">Agriculture</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="glide__arrows" data-glide-el="controls">
+                <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><</button>
+                <button class="glide__arrow glide__arrow--right" data-glide-dir=">">></button>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+    <script>
+        const config = {
+            type: "carousel"
+        }
+        new Glide('.glide', config).mount()
+    </script>
+</body>
+<footer>
+    <div class="top">
+        <img class="logo" src="../images/logo.JPG">
+        <p>Land a better job faster</p>
+    </div>
+
+    <div class="section">
+        <div>
+            <h1>Company</h1>
+            <p>Engineering sites</p>
+            <p>Medecine</p>
+            <p>Agriculture</p>
+        </div>
+        <div>
+            <h1>Services</h1>
+            <p>Job Search</p>
+            <p>Internship search</p>
+            <p>Bootcamps</p>
+            <p>Career adv ice</p>
+        </div>
+        <div>
+            <h1>Support</h1>
+            <p>Help</p>
+            <p>Privacy Policy</p>
+            <p>Terms of Use</p>
+        </div>
+    </div>
+    <p>Follow us</p>
+    <img src="../images/icon-facebook.svg">
+    <img src="../images/icon-pinterest.svg">
+    <img src="../images/icon-twitter.svg">
+    <p>©JobWave 2024 | All rights reserved</p>
+
+</footer>
+
+
+</html>
