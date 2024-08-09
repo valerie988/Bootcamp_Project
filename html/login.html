@@ -21,7 +21,7 @@
         <div class="form-container log-in-container">
             <div class="tabs">
                 <a href="#" class="tab log-in-tab active">Log In</a>
-                <a href="#" class="tab sign-up-tab active">Sign up</a>
+                <a href="#" class="tab sign-up-tab">Sign up</a> <!-- Only one active tab at a time -->
             </div>
             <h1>Log In</h1>
             <form>
@@ -29,7 +29,7 @@
                 <p class="message"></p>
                 <input name="password" type="password" class="Password" required placeholder="Password" class="input_text"><br>
                 <p class="message"></p>
-                <button>Log In</button><br>
+                <button type="submit">Log In</button><br> <!-- Explicitly set type="submit" -->
             </form>
             <div class="memory">
                 <label>
@@ -47,34 +47,33 @@
 
         <div class="form-container Sign-up-container hidden">
             <div class="tabs">
-                <div class="tab log-in-tab active">Log In</div>
-                <div class="tab sign-up-tab active">Sign Up</div>
+                <a href="#" class="tab log-in-tab">Log In</a> <!-- Removed active from Log In -->
+                <a href="#" class="tab sign-up-tab active">Sign Up</a> <!-- Only one active tab at a time -->
             </div>
             <h1>Sign Up</h1>
             <form class="signup">
-            <div class="name">
-                <label class="input_top">
-                    <input name="name" type="text" id="F_name" required placeholder="First Name" class="input_text_flex" autocomplete="true">
-                    <p class="message"></p>
-                </label>
-                <label class="input_top">
-                    <input name="name" type="text" id="L_name" required placeholder="Last name" class="input_text_flex" autocomplete="true">
-                    <p class="message"></p>
-                </label>
-            </div>
-            <input name="email" type="email" id="email" required placeholder="Email" class="input_text" autocomplete="true"><br>
-            <p class="message"></p>
-            <input name="Password" type="text" class="Password" required placeholder="Password" class="input_text"><br>
-            <p class="message"></p>
-            <input name="password" type="text" required placeholder="Confirm Password" class="input_text"><br>
-            <p class="message"></p>
-            <button>Sign up</button>
-        </form>
+                <div class="name">
+                    <label class="input_top">
+                        <input name="name" type="text" id="F_name" required placeholder="First Name" class="input_text_flex" autocomplete="true">
+                        <p class="message"></p>
+                    </label>
+                    <label class="input_top">
+                        <input name="name" type="text" id="L_name" required placeholder="Last name" class="input_text_flex" autocomplete="true">
+                        <p class="message"></p>
+                    </label>
+                </div>
+                <input name="email" type="email" id="email" required placeholder="Email" class="input_text" autocomplete="true"><br>
+                <p class="message"></p>
+                <input name="Password" type="password" class="Password" required placeholder="Password" class="input_text"><br> <!-- Changed to type="password" -->
+                <p class="message"></p>
+                <input name="password" type="password" required placeholder="Confirm Password" class="input_text"><br> <!-- Changed to type="password" -->
+                <p class="message"></p>
+                <button type="submit">Sign up</button> <!-- Explicitly set type="submit" -->
+            </form>
             <label>
                 <input name="subscribe" type="checkbox">
                 <p>I agree with privacy and policy</p>
             </label><br>
-           
         </div>
     </main>
 </body>

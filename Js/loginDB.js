@@ -1,62 +1,73 @@
-const myform = document.querySelector("form")
-const review = function() {
-    let db = null
-    let mystore = null
-    let OpendbReq = indexedDB.open("login", 2)
+const myform = document.querySelector("form");
 
-    OpendbReq.addEventListener("success", (suc) =>{
-        console.log("Database was created")
-    })
+const review = function () {
+  let db = null;
 
-    OpendbReq.addEventListener("error", (err) =>{
-        console.warn("Database was not created")
-    })
+  // Open the IndexedDB
+  const OpendbReq = indexedDB.open("login", 2);
 
-    OpendbReq.addEventListener("upgradeneeded", (up) =>{
-        db = up.target.result
-        console.log(up);
+  OpendbReq.addEventListener("success", (suc) => {
+    db = suc.target.result; // Set the db variable
+    console.log("Database opened successfully");
+  });
 
-        if(db.objectStoreNames.contains("Store")) return
+  OpendbReq.addEventListener("error", (err) => {
+    console.warn("Database failed to open:", err);
+  });
 
-        mystore = db.createObjectStore("Store", {
-            keyPath: "id",
-            autoIncrement: true,
-        })
-    })
+  OpendbReq.addEventListener("upgradeneeded", (up) => {
+    db = up.target.result; // Set the db variable
+    console.log("Database upgrade needed:", up);
 
+    if (!db.objectStoreNames.contains("Store")) {
+      db.createObjectStore("Store", {
+        keyPath: "id",
+        autoIncrement: true,
+      });
+      console.log("Object store created");
+    }
+  });
 
-    myform.addEventListener("submit", (ev) => {
-        ev.preventDefault()
-        console.log(ev);
-    
-        const user = document.querySelector("#username").value
-        const Password = document.querySelector(".Password").value
+  // Handle form submission
+  myform.addEventListener("submit", (ev) => {
+    ev.preventDefault();
 
-        let mydata = {
-            username: user,
-            Password: Password
-        }
+    if (!db) {
+      console.error("Database is not initialized.");
+      return;
+    }
 
-        console.log(db);
+    const user = document.querySelector("#username").value;
+    const password = document.querySelector(".Password").value;
 
-        const Tran = db.transaction("Store", "readwrite")
-        console.log(Tran)
+    const mydata = {
+      username: user,
+      password: password,
+    };
 
-        Tran.oncomplete = () => {
-            console.log("Transaction sucessful")
-        }
+    console.log("Adding data:", mydata);
 
-        let store = Tran.objectStore("Store")
-        request = store.add(mydata)
+    const tran = db.transaction("Store", "readwrite");
+    const store = tran.objectStore("Store");
+    const request = store.add(mydata);
 
-        request.onsuccess = (e) => {
-            console.log("Form successfully added")
-        }
+    request.onsuccess = () => {
+      console.log("Data added successfully");
+      window.location.href = "Field.html"; // Redirect on success
+    };
 
-        request.onerror = (e) => {
-            console.log("something went wrong with the class")
-        }
+    request.onerror = (e) => {
+      console.error("Error adding data:", e.target.error);
+    };
 
-    })
-}
-review()
+    tran.oncomplete = () => {
+      console.log("Transaction completed successfully");
+    };
+
+    tran.onerror = (e) => {
+      console.error("Transaction error:", e.target.error);
+    };
+  });
+};
+
+review();
