@@ -37,11 +37,11 @@ const review = function () {
       return;
     }
 
-    const user = document.querySelector("#username").value;
+    const email = document.querySelector("#username").value;
     const password = document.querySelector(".Password").value;
 
     const mydata = {
-      username: user,
+      username: email, // Use email as username
       password: password,
     };
 
@@ -54,6 +54,7 @@ const review = function () {
     request.onsuccess = () => {
       console.log("Data added successfully");
       window.location.href = "Field.html"; // Redirect on success
+      myform.reset(); // Clear form fields
     };
 
     request.onerror = (e) => {

@@ -1,66 +1,74 @@
-const signUp = document.querySelector(".signup")
-const note = function() {
-    let db = null
-    let mystore = null
-    let OpendbReq = indexedDB.open("signup")
+const signUp = document.querySelector(".signup");
+const note = function () {
+  let db = null;
+  let mystore = null;
+  let OpendbReq = indexedDB.open("signup", 2); // Ensure version matches
 
-    OpendbReq.addEventListener("success", (suc) =>{
-        console.log("Database was created")
-    })
+  OpendbReq.addEventListener("success", (suc) => {
+    db = suc.target.result; // Set the db variable
+    console.log("Database opened successfully");
+  });
 
-    OpendbReq.addEventListener("error", (err) =>{
-        console.warn("Database was not created")
-    })
+  OpendbReq.addEventListener("error", (err) => {
+    console.warn("Database failed to open:", err);
+  });
 
-    OpendbReq.addEventListener("upgradeneeded", (up) =>{
-        db = up.target.result
-        console.log(up);
+  OpendbReq.addEventListener("upgradeneeded", (up) => {
+    db = up.target.result; // Set the db variable
+    console.log("Database upgrade needed:", up);
 
-        if(db.objectStoreNames.contains("Store")) return
+    if (!db.objectStoreNames.contains("Store")) {
+      db.createObjectStore("Store", {
+        keyPath: "id",
+        autoIncrement: true,
+      });
+      console.log("Object store created");
+    }
+  });
 
-        mystore = db.createObjectStore("Store", {
-            keyPath: "id",
-            autoIncrement: true,
-        })
-    })
+  signUp.addEventListener("submit", (ev) => {
+    ev.preventDefault();
 
+    if (!db) {
+      console.error("Database is not initialized.");
+      return;
+    }
 
-    signUp.addEventListener("submit", (ev) => {
-        ev.preventDefault()
-        console.log(ev);
-    
-        const fname = document.querySelector("#F_name").value
-        const lname = document.querySelector("#L_name").value
-        const email = document.querySelector("#email").value
-        const Password = document.querySelector(".Password").value
+    const fname = document.querySelector("#F_name").value;
+    const lname = document.querySelector("#L_name").value;
+    const email = document.querySelector("#email").value;
+    const password = document.querySelector(".Password").value;
 
-        let mydata = {
-            fname: fname,
-            lname: lname,
-            email: email,
-            Password: Password
-        }
+    let mydata = {
+      fname: fname,
+      lname: lname,
+      email: email,
+      password: password, // Changed to match form field
+    };
 
-        console.log(db);
+    console.log("Adding data:", mydata);
 
-        const Tran = db.transaction("Store", "readwrite")
-        console.log(Tran)
+    const tran = db.transaction("Store", "readwrite");
+    const store = tran.objectStore("Store");
+    const request = store.add(mydata);
 
-        Tran.oncomplete = () => {
-            console.log("Transaction sucessful")
-        }
+    request.onsuccess = (e) => {
+      console.log("Form successfully added");
+      signUp.reset(); // Clear form fields
+    };
 
-        let store = Tran.objectStore("Store")
-        request = store.add(mydata)
+    request.onerror = (e) => {
+      console.error("Error adding data:", e.target.error);
+    };
 
-        request.onsuccess = (e) => {
-            console.log("Form successfully added")
-        }
+    tran.oncomplete = () => {
+      console.log("Transaction completed successfully");
+    };
 
-        request.onerror = (e) => {
-            console.log("something went wrong with the class")
-        }
+    tran.onerror = (e) => {
+      console.error("Transaction error:", e.target.error);
+    };
+  });
+};
 
-    })
-}
-note()
+note();

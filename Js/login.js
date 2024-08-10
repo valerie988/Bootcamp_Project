@@ -6,34 +6,25 @@ var forms = document.querySelectorAll("form");
 
 // Form validation function
 const validateForm = function () {
-  var username = document.querySelector("#username").value;
+  var email = document.querySelector("#email").value;
   var fName = document.querySelector("#F_name").value;
   var lName = document.querySelector("#L_name").value;
   var pass = document.querySelector(".Password").value;
   var message = document.querySelectorAll(".message");
-  var email = document.querySelector("#email").value;
 
   let isValid = true;
 
   // Clear all previous messages
   message.forEach((msg) => (msg.textContent = ""));
 
-  if (username === "") {
-    message[0].textContent = "Username cannot be empty";
-    isValid = false;
-  }
-  if (fName === "") {
-    message[2].textContent = "First Name cannot be empty";
-    isValid = false;
-  }
-  if (lName === "") {
-    message[3].textContent = "Last Name cannot be empty";
+  if (email === "") {
+    message[0].textContent = "Email cannot be empty";
     isValid = false;
   }
 
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   if (!emailPattern.test(email)) {
-    message[4].textContent = "Looks like this is not an email";
+    message[0].textContent = "Looks like this is not an email";
     isValid = false;
   }
 
